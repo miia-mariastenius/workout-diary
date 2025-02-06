@@ -22,6 +22,16 @@ export const Styles = StyleSheet.create({
   },
   form: {
     gap: 10,
-    margin: 10
+    margin: 10,
+  },
+  datePicker: {
+    marginTop: 50,
+  },
+  viewExercisesButton: {
+    position: "absolute",
+    bottom: 20,
+    margin: 10,
+    alignSelf:"center",
+    width: "90%"
   }
 })

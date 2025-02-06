@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { MyTheme, Styles } from './styles/style';
 import { Button, Divider, PaperProvider, SegmentedButtons, Text, TextInput } from 'react-native-paper';
 import React, { use, useState } from 'react';
 import { DatePickerInput, registerLocale } from 'react-native-paper-dates'
 import { en } from 'react-native-paper-dates'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function App() {
@@ -51,10 +52,11 @@ export default function App() {
             onChange={(d) => setDate(d)}
             inputMode="start"
             mode="outlined"
-            style={{ marginTop: 20 }}
+            withDateFormatInLabel={false}
+            style={Styles.datePicker}
           />
-
         </View>
+        <Button style={Styles.viewExercisesButton} mode='contained'>View All Exercises</Button>
       </SafeAreaView>
     </PaperProvider>
   );
