@@ -10,7 +10,6 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
   header: {
     flexDirection: "row",
@@ -19,6 +18,10 @@ export const Styles = StyleSheet.create({
   },
   saveButton: {
     width: 100,
-    
+
+  },
+  form: {
+    gap: 10,
+    margin: 10
   }
 })
