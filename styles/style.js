@@ -18,7 +18,7 @@ export const Styles = StyleSheet.create({
   },
   saveButton: {
     width: 100,
-
+    
   },
   form: {
     gap: 10,
@@ -27,11 +27,17 @@ export const Styles = StyleSheet.create({
   datePicker: {
     marginTop: 50,
   },
-  viewExercisesButton: {
-    position: "absolute",
-    bottom: 20,
+  supportingText: {
+    marginTop: -6,
+    marginLeft: 15,
+  },
+  buttonContainer: {
     margin: 10,
-    alignSelf:"center",
-    width: "90%"
+    justifyContent: "flex-end",
+    height: "60%",
+  },
+  viewExercisesButton: {
+    bottom: 0,
+    alignSelf: "stretch"
   }
 })
