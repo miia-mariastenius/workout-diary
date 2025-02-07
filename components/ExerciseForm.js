@@ -3,7 +3,8 @@ import { Button, Divider, SegmentedButtons, Text, TextInput } from "react-native
 import { MyTheme, Styles } from '../styles/style';
 import { DatePickerInput, registerLocale } from 'react-native-paper-dates'
 import { en } from 'react-native-paper-dates'
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ModalContext } from "./Context";
 
 export default function ExerciseForm() {
 
@@ -12,7 +13,10 @@ export default function ExerciseForm() {
   const [duration, setDuration] = useState('')
   const [distance, setDistance] = useState('')
 
+  const {setModalVisible} = useContext(ModalContext)
+
   return (
+
     <View>
       <View style={Styles.header}>
         <Text variant='headlineLarge'>ADD EXERCISE</Text>
@@ -54,7 +58,7 @@ export default function ExerciseForm() {
         />
       </View>
       <View style={Styles.buttonContainer}>
-        <Button style={Styles.viewExercisesButton} mode='contained'>View All Exercises</Button>
+        <Button style={Styles.viewExercisesButton} mode='contained' onPress={()=> setModalVisible(true)}>View All Exercises</Button>
       </View>
     </View>
   )
