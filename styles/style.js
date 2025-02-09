@@ -3,7 +3,11 @@ import { MD3LightTheme } from "react-native-paper";
 
 export const MyTheme = {
   ...MD3LightTheme,
-
+  colors:{
+    ...MD3LightTheme.colors,
+    primary: '#CC8470',
+    secondaryContainer: '#faefef',
+  }
 }
 
 export const Styles = StyleSheet.create({

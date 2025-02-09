@@ -30,19 +30,22 @@ export default function ExerciseForm() {
           buttons={[
             {
               value: 'walk',
-              label: 'Walking'
+              label: 'Walking',
+              icon: exercise === 'walk' ? 'check' : undefined
             },
             {
               value: 'run',
-              label: 'Running'
+              label: 'Running',
+              icon: exercise === 'run' ? 'check' : undefined
             }, {
               value: 'bike',
-              label: 'Biking'
+              label: 'Biking',
+              icon: exercise === 'bike' ? 'check' : undefined
             },
           ]}
         />
-        <TextInput mode='outlined' label="Duration" placeholder="minutes" keyboardType='number-pad' value={duration} onChangeText={duration => setDuration(duration)} />
-        <TextInput mode='outlined' label="Distance" placeholder="kilometers" keyboardType='number-pad' value={distance} onChangeText={distance => setDistance(distance)} />
+        <TextInput mode='outlined' label="Duration" placeholder="Minutes" keyboardType='number-pad' value={duration} onChangeText={duration => setDuration(duration)} />
+        <TextInput mode='outlined' label="Distance" placeholder="Kilometers" keyboardType='number-pad' value={distance} onChangeText={distance => setDistance(distance)} />
         <View style={Styles.supportingText}>
           <Text>in kilometers</Text>
         </View>
