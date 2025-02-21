@@ -55,6 +55,6 @@ export const Styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     width: 350,
-    alignItems: "center",
   },
+
 })
