@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { Modal, View } from "react-native";
-import { Button, Divider, List, Menu } from "react-native-paper";
+import { View } from "react-native";
+import { Button, Divider, List, Menu, Modal } from "react-native-paper";
 import { ModalContext } from "./Context";
 import { Styles } from "../styles/style";
 
@@ -9,22 +9,31 @@ export default function ModalView() {
   const { modalVisible, setModalVisible } = useContext(ModalContext)
   const [visible, setVisible] = useState(false)
 
-  const openMenu = () => setVisible(true)
-  const closeMenu = () => setVisible(false)
+  const openMenu = () => {
+    console.log("Opening menu");
+    setVisible(true);
+  };
+
+  const closeMenu = () => {
+    console.log("Closing menu");
+    setVisible(false);
+  };
 
   return (
-    <Modal
-      animationType="none"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => setModalVisible(!modalVisible)}
-    >
-      <View style={Styles.modalBackground}>
+    <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} contentContainerStyle={Styles.modalContent}>
         <View style={Styles.exerciseList}>
           <Menu
             visible={visible}
             onDismiss={closeMenu}
-            anchor={<Button onPress={openMenu} icon={"menu-down"} contentStyle={{ flexDirection: 'row-reverse' }}>ALL EXERCISES</Button>}>
+            anchor={
+              <Button onPress={openMenu} 
+              icon={"menu-down"} 
+              contentStyle={{ flexDirection: 'row-reverse' }}
+              >
+                ALL EXERCISES
+              </Button>
+            }
+            >
             <Menu.Item onPress={() => { }} title="Item 1" />
             <Menu.Item onPress={() => { }} title="Item 2" />
             <Divider />
@@ -44,7 +53,6 @@ export default function ModalView() {
             />
           </List.Section>
           <Button mode="contained" onPress={() => setModalVisible(false)}>Close</Button>
-        </View>
       </View>
     </Modal>
   )

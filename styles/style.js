@@ -44,17 +44,15 @@ export const Styles = StyleSheet.create({
     bottom: 0,
     alignSelf: "stretch"
   },
-  modalBackground: {
-    flex: 1,
-    justifyContent: "center",
+  modalContent: {
+    backgroundColor: "white",
+    margin: 20,
+    borderRadius: 10,
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   exerciseList: {
-    backgroundColor: "white",
     padding: 20,
-    borderRadius: 10,
-    width: 350,
+    width: '100%',
   },
 
 })
