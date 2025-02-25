@@ -18,8 +18,8 @@ export default function ExerciseForm() {
 
   const handleSave = () => {
     if (!exercise || !duration || !distance || !date) {
-      Alert.alert("Error", "Please fill in all fields.");
-      return;
+      Alert.alert("Error", "Please fill in all fields.")
+      return
     }
 
     addExercise({ exercise, date, duration, distance })
@@ -27,7 +27,7 @@ export default function ExerciseForm() {
     setDate(new Date())
     setDuration('')
     setDistance('')
-  };
+  }
 
   return (
 
