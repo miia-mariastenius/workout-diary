@@ -1,10 +1,10 @@
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { Button, Divider, SegmentedButtons, Text, TextInput } from "react-native-paper";
 import { MyTheme, Styles } from '../styles/style';
 import { DatePickerInput, registerLocale } from 'react-native-paper-dates'
 import { en } from 'react-native-paper-dates'
 import { useContext, useState } from "react";
-import { ModalContext } from "./Context";
+import { FormContext, ModalContext } from "./Context";
 
 export default function ExerciseForm() {
 
@@ -13,14 +13,28 @@ export default function ExerciseForm() {
   const [duration, setDuration] = useState('')
   const [distance, setDistance] = useState('')
 
-  const {setModalVisible} = useContext(ModalContext)
+  const { setModalVisible } = useContext(ModalContext)
+  const { addExercise } = useContext(FormContext)
+
+  const handleSave = () => {
+    if (!exercise || !duration || !distance || !date) {
+      Alert.alert("Error", "Please fill in all fields.");
+      return;
+    }
+
+    addExercise({ exercise, date, duration, distance })
+    setExercise('')
+    setDate(new Date())
+    setDuration('')
+    setDistance('')
+  };
 
   return (
 
     <View>
       <View style={Styles.header}>
         <Text variant='headlineLarge'>ADD EXERCISE</Text>
-        <Button mode='contained' style={Styles.saveButton}>Save</Button>
+        <Button mode='contained' onPress={handleSave} style={Styles.saveButton}>Save</Button>
       </View>
       <Divider bold />
       <View style={Styles.form}>
@@ -29,18 +43,18 @@ export default function ExerciseForm() {
           onValueChange={setExercise}
           buttons={[
             {
-              value: 'walk',
+              value: 'Walking',
               label: 'Walking',
-              icon: exercise === 'walk' ? 'check' : undefined
+              icon: exercise === 'Walking' ? 'check' : undefined
             },
             {
-              value: 'run',
+              value: 'Running',
               label: 'Running',
-              icon: exercise === 'run' ? 'check' : undefined
+              icon: exercise === 'Running' ? 'check' : undefined
             }, {
-              value: 'bike',
+              value: 'Biking',
               label: 'Biking',
-              icon: exercise === 'bike' ? 'check' : undefined
+              icon: exercise === 'Biking' ? 'check' : undefined
             },
           ]}
         />
@@ -61,7 +75,7 @@ export default function ExerciseForm() {
         />
       </View>
       <View style={Styles.buttonContainer}>
-        <Button style={Styles.viewExercisesButton} mode='contained' onPress={()=> setModalVisible(true)}>View All Exercises</Button>
+        <Button style={Styles.viewExercisesButton} mode='contained' onPress={() => setModalVisible(true)}>View All Exercises</Button>
       </View>
     </View>
   )
