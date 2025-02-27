@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { ScrollView, View } from "react-native";
-import { Button, Divider, List, Menu, Modal, Text } from "react-native-paper";
+import { Pressable, ScrollView, View } from "react-native";
+import { Button, Divider, Icon, List, Menu, Modal, Text } from "react-native-paper";
 import { FormContext, ModalContext } from "./Context";
-import { Styles } from "../styles/style";
+import { MyTheme, Styles } from "../styles/style";
 
 export default function ModalView() {
 
@@ -34,18 +34,16 @@ export default function ModalView() {
 
   return (
     <Modal visible={modalVisible} onDismiss={() => setModalVisible(false)} contentContainerStyle={Styles.modalContent}>
-      <View style={Styles.exerciseList}>
-        <ScrollView>
+      <View style={Styles.modalHeaderBackground}>
+        <View style={Styles.exerciseList}>
           <Menu
             visible={visible}
             onDismiss={closeMenu}
+            style={Styles.menu}
             anchor={
-              <Button onPress={openMenu}
-                icon={"menu-down"}
-                contentStyle={{ flexDirection: 'row-reverse' }}
-              >
-                {filter.toUpperCase()}
-              </Button>
+              <Pressable onPress={openMenu} style={Styles.menuButton}>
+                <Text style={Styles.menuButtonText}>{filter.toUpperCase()} ▾</Text>
+              </Pressable>
             }
           >
             <Menu.Item onPress={() => handleMenuItemPress("All exercises")} title="All exercises" />
@@ -55,21 +53,24 @@ export default function ModalView() {
           </Menu>
           <Text variant="headlineMedium">{totalDistance}</Text>
           <Text variant="titleSmall">total distance (km)</Text>
-          <List.Section>
+        </View>
+      </View>
+      <ScrollView>
+        <View style={Styles.listView}>
+          <List.Section style={Styles.modalList}>
             {filteredFormData.map((exercise, index) => (
               <View key={index}>
                 <List.Item
                   title={exercise.exercise}
                   description={`${exercise.distance} km  •  ${exercise.duration} min\n${exercise.date.toLocaleDateString()}`}
                 />
-                <Divider />
+                {index < filteredFormData.length - 1 && <Divider />}
               </View>
             ))}
           </List.Section>
-          <Button mode="contained" onPress={() => setModalVisible(false)}>Close</Button>
-        </ScrollView>
-      </View>
-
+        </View>
+      </ScrollView>
+      <Button mode="contained" onPress={() => setModalVisible(false)} style={Styles.modalButton}>Close</Button>
     </Modal>
   )
 }

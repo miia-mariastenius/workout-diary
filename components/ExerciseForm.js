@@ -32,11 +32,18 @@ export default function ExerciseForm() {
   return (
 
     <View>
-      <View style={Styles.header}>
-        <Text variant='headlineLarge'>ADD EXERCISE</Text>
-        <Button mode='contained' onPress={handleSave} style={Styles.saveButton}>Save</Button>
+      <View style={Styles.headerBackground}>
+        <View style={Styles.header}>
+          <Text variant='headlineLarge'>ADD EXERCISE</Text>
+          <Button
+            mode='contained'
+            onPress={handleSave}
+            style={Styles.saveButton}
+          >
+            Save
+          </Button>
+        </View>
       </View>
-      <Divider bold />
       <View style={Styles.form}>
         <SegmentedButtons
           value={exercise}
@@ -58,8 +65,24 @@ export default function ExerciseForm() {
             },
           ]}
         />
-        <TextInput mode='outlined' label="Duration" placeholder="Minutes" keyboardType='number-pad' value={duration} onChangeText={duration => setDuration(duration)} />
-        <TextInput mode='outlined' label="Distance" placeholder="Kilometers" keyboardType='number-pad' value={distance} onChangeText={distance => setDistance(distance)} />
+        <TextInput
+          mode='outlined'
+          label='Duration'
+          placeholder='Minutes'
+          right={<TextInput.Icon icon='timer-outline' />}
+          keyboardType='number-pad'
+          value={duration}
+          onChangeText={duration => setDuration(duration)}
+        />
+        <TextInput
+          mode='outlined'
+          label='Distance'
+          placeholder='Kilometers'
+          right={<TextInput.Icon icon='map-marker-distance' />}
+          keyboardType='number-pad'
+          value={distance}
+          onChangeText={distance => setDistance(distance)}
+        />
         <View style={Styles.supportingText}>
           <Text>in kilometers</Text>
         </View>

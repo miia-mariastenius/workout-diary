@@ -5,6 +5,7 @@ import { FormContext, ModalContext } from './components/Context';
 import ExerciseForm from './components/ExerciseForm';
 import ModalView from './components/ModalView';
 import { MyTheme, Styles } from './styles/style';
+import { StatusBar } from 'react-native';
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
         <ModalContext.Provider value={{ modalVisible, setModalVisible }}>
           <PaperProvider theme={MyTheme}>
             <SafeAreaView style={Styles.container}>
+              <StatusBar backgroundColor={MyTheme.colors.secondaryContainer} barStyle="dark-content" />
               <ExerciseForm />
               <ModalView />
             </SafeAreaView>
