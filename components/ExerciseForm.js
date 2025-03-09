@@ -1,10 +1,11 @@
-import { Alert, View } from "react-native";
-import { Button, Divider, SegmentedButtons, Text, TextInput } from "react-native-paper";
-import { MyTheme, Styles } from '../styles/style';
-import { DatePickerInput, registerLocale } from 'react-native-paper-dates'
-import { en } from 'react-native-paper-dates'
 import { useContext, useState } from "react";
+import { Alert, Keyboard, View } from "react-native";
+import { Button, SegmentedButtons, Text, TextInput } from "react-native-paper";
+import { DatePickerInput, en, registerTranslation } from 'react-native-paper-dates';
+import { Styles } from '../styles/style';
 import { FormContext, ModalContext } from "./Context";
+
+registerTranslation("en", en)
 
 export default function ExerciseForm() {
 
@@ -31,6 +32,10 @@ export default function ExerciseForm() {
     setHours('')
     setMinutes('')
     setDistance('')
+
+    Keyboard.dismiss()
+
+    Alert.alert("Success", "Exercise added successfully!")
   }
 
   const handleMinutesChange = (value) => {
@@ -79,7 +84,7 @@ export default function ExerciseForm() {
           <TextInput
             mode='outlined'
             label='Hours'
-            placeholder='Hours'
+            right={<TextInput.Icon icon="timer-sand-empty" />}
             keyboardType='number-pad'
             value={hours}
             onChangeText={hours => setHours(hours)}
@@ -88,7 +93,7 @@ export default function ExerciseForm() {
           <TextInput
             mode='outlined'
             label='Minutes'
-            placeholder='Minutes'
+            right={<TextInput.Icon icon="timer-outline" />}
             keyboardType='number-pad'
             value={minutes}
             onChangeText={handleMinutesChange}

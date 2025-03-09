@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Pressable, ScrollView, View } from "react-native";
-import { Button, Divider, Icon, List, Menu, Modal, Text } from "react-native-paper";
+import { Button, Divider, List, Menu, Modal, Text } from "react-native-paper";
+import { Styles } from "../styles/style";
 import { FormContext, ModalContext } from "./Context";
-import { MyTheme, Styles } from "../styles/style";
 
 export default function ModalView() {
 
@@ -38,6 +38,7 @@ export default function ModalView() {
             visible={visible}
             onDismiss={closeMenu}
             style={Styles.menu}
+            contentStyle={{ backgroundColor: '#ffffff' }}
             anchor={
               <Pressable onPress={openMenu} style={Styles.menuButton}>
                 <Text style={Styles.menuButtonText}>{filter.toUpperCase()} ▾</Text>

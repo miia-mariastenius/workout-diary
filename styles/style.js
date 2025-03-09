@@ -8,9 +8,6 @@ export const MyTheme = {
     primary: '#CC8470',
     secondaryContainer: '#faefef',
   },
-  // elevation: {
-  //   level2: { backgroundColor: "lightblue" }
-  // }
 }
 
 export const Styles = StyleSheet.create({
@@ -102,7 +99,6 @@ export const Styles = StyleSheet.create({
     marginTop: -3,
   },
   listView: {
-    //backgroundColor:'lightgray',
     width: '1000',
   },
   modalButton: {
