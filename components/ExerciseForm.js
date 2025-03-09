@@ -1,8 +1,9 @@
-import { useContext, useState } from "react";
 import { Alert, Keyboard, View } from "react-native";
-import { Button, SegmentedButtons, Text, TextInput } from "react-native-paper";
-import { DatePickerInput, en, registerTranslation } from 'react-native-paper-dates';
-import { Styles } from '../styles/style';
+import { Button, Divider, SegmentedButtons, Text, TextInput } from "react-native-paper";
+import { MyTheme, Styles } from '../styles/style';
+import { DatePickerInput, registerLocale } from 'react-native-paper-dates'
+import { en, registerTranslation } from 'react-native-paper-dates'
+import { useContext, useState } from "react";
 import { FormContext, ModalContext } from "./Context";
 
 registerTranslation("en", en)

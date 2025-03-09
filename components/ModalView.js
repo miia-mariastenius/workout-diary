@@ -27,6 +27,8 @@ export default function ModalView() {
 
   const filteredFormData = filter === "All exercises" ? formData : formData.filter(exercise => exercise.exercise === filter)
 
+  const sortedFormData = filteredFormData.sort((a, b) => new Date(b.date) - new Date(a.date))
+
   let totalDistance = 0;
   filteredFormData.forEach(ex => totalDistance += parseFloat(ex.distance))
 
@@ -57,20 +59,20 @@ export default function ModalView() {
       <ScrollView>
         <View style={Styles.listView}>
           <List.Section style={Styles.modalList}>
-            {filteredFormData.length === 0 ? (
+            {sortedFormData.length === 0 ? (
               <List.Item
                 title="No exercises added."
                 description="There are no exercises for the selected type."
                 style={Styles.noExercisesItem}
               />
             ) : (
-              filteredFormData.map((exercise, index) => (
+              sortedFormData.map((exercise, index) => (
               <View key={index}>
                 <List.Item
                   title={exercise.exercise}
                   description={`${exercise.distance} km  •  ${exercise.duration} \n${exercise.date.toLocaleDateString()}`}
                 />
-                {index < filteredFormData.length - 1 && <Divider />}
+                {index < sortedFormData.length - 1 && <Divider />}
               </View>
             )))}
           </List.Section>
