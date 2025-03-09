@@ -13,12 +13,10 @@ export default function ModalView() {
 
 
   const openMenu = () => {
-    // console.log("Opening menu");
     setVisible(true);
   }
 
   const closeMenu = () => {
-    // console.log("Closing menu");
     setVisible(false);
   }
 
@@ -58,15 +56,22 @@ export default function ModalView() {
       <ScrollView>
         <View style={Styles.listView}>
           <List.Section style={Styles.modalList}>
-            {filteredFormData.map((exercise, index) => (
+            {filteredFormData.length === 0 ? (
+              <List.Item
+                title="No exercises added."
+                description="There are no exercises for the selected type."
+                style={Styles.noExercisesItem}
+              />
+            ) : (
+              filteredFormData.map((exercise, index) => (
               <View key={index}>
                 <List.Item
                   title={exercise.exercise}
-                  description={`${exercise.distance} km  •  ${exercise.duration} min\n${exercise.date.toLocaleDateString()}`}
+                  description={`${exercise.distance} km  •  ${exercise.duration} \n${exercise.date.toLocaleDateString()}`}
                 />
                 {index < filteredFormData.length - 1 && <Divider />}
               </View>
-            ))}
+            )))}
           </List.Section>
         </View>
       </ScrollView>

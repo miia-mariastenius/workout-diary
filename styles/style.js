@@ -35,6 +35,14 @@ export const Styles = StyleSheet.create({
     gap: 10,
     margin: 10,
   },
+  durationRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  durationInput: {
+    flex: 1,
+  },
   datePicker: {
     marginTop: 50,
   },
@@ -68,6 +76,11 @@ export const Styles = StyleSheet.create({
   exerciseList: {
     padding: 15,
     width: '100%',
+  },
+  noExercisesItem: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   menuButton: {
     flexDirection: "row",

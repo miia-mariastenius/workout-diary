@@ -10,23 +10,33 @@ export default function ExerciseForm() {
 
   const [exercise, setExercise] = useState('')
   const [date, setDate] = useState(new Date())
-  const [duration, setDuration] = useState('')
+  const [hours, setHours] = useState('')
+  const [minutes, setMinutes] = useState('');
   const [distance, setDistance] = useState('')
 
   const { setModalVisible } = useContext(ModalContext)
   const { addExercise } = useContext(FormContext)
 
   const handleSave = () => {
-    if (!exercise || !duration || !distance || !date) {
+    if (!exercise || !minutes || !distance || !date) {
       Alert.alert("Error", "Please fill in all fields.")
       return
     }
 
+    const duration = hours ? `${hours}h ${minutes}min` : `${minutes}min`
+
     addExercise({ exercise, date, duration, distance })
     setExercise('')
     setDate(new Date())
-    setDuration('')
+    setHours('')
+    setMinutes('')
     setDistance('')
+  }
+
+  const handleMinutesChange = (value) => {
+    if (value === '' || parseInt(value) <= 59) {
+      setMinutes(value);
+    }
   }
 
   return (
@@ -65,15 +75,26 @@ export default function ExerciseForm() {
             },
           ]}
         />
-        <TextInput
-          mode='outlined'
-          label='Duration'
-          placeholder='Minutes'
-          right={<TextInput.Icon icon='timer-outline' />}
-          keyboardType='number-pad'
-          value={duration}
-          onChangeText={duration => setDuration(duration)}
-        />
+        <View style={Styles.durationRow}>
+          <TextInput
+            mode='outlined'
+            label='Hours'
+            placeholder='Hours'
+            keyboardType='number-pad'
+            value={hours}
+            onChangeText={hours => setHours(hours)}
+            style={Styles.durationInput}
+          />
+          <TextInput
+            mode='outlined'
+            label='Minutes'
+            placeholder='Minutes'
+            keyboardType='number-pad'
+            value={minutes}
+            onChangeText={handleMinutesChange}
+            style={Styles.durationInput}
+          />
+        </View>
         <TextInput
           mode='outlined'
           label='Distance'
